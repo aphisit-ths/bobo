@@ -22,13 +22,13 @@
 <link rel="manifest" href="manifest.json">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Architects+Daughter&family=Space+Grotesk:wght@400;500;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Noto+Sans+Thai:wght@400;500;600;700&display=swap">
 <style>
 :root{
-  --paper:#F1EFE9;--grid:#DFE3E0;--card:#FAF9F6;--ink:#232B31;--muted:#77838B;
-  --line:#D4D8D5;--hot:#DD4F2C;--cool:#2E7D8F;--amber:#C98A25;
-  --sans:'Space Grotesk',ui-sans-serif,system-ui,-apple-system,sans-serif;
-  --hand:'Architects Daughter','Bradley Hand',cursive;
+  --paper:#F1EFE9;--grid:#DFE3E0;--card:#FAF9F6;--ink:#1E262C;--muted:#5A666E;
+  --line:#D4D8D5;--hot:#C8401D;--cool:#256B7A;--amber:#A8710F;
+  --sans:'Space Grotesk','Noto Sans Thai',ui-sans-serif,system-ui,-apple-system,sans-serif;
+  --hand:var(--sans);
   --sh:3px 3px 0 rgba(35,43,49,.13);
 }
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
@@ -37,7 +37,7 @@ body{
   margin:0;color:var(--ink);
   background:linear-gradient(var(--grid) 1px,transparent 1px) 0 0/100% 26px,
     linear-gradient(90deg,var(--grid) 1px,transparent 1px) 0 0/26px 100%,var(--paper);
-  font-family:var(--sans);font-size:15px;line-height:1.5;
+  font-family:var(--sans);font-size:16px;line-height:1.6;
   padding:calc(18px + env(safe-area-inset-top)) 14px calc(52px + env(safe-area-inset-bottom));
   overscroll-behavior-y:contain;
 }
@@ -50,39 +50,39 @@ button{font-family:var(--sans);cursor:pointer}
 .top{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px}
 .top h1{font-weight:700;font-size:20px;letter-spacing:-.02em;margin:0;text-transform:uppercase}
 .topright{display:flex;align-items:center;gap:10px}
-.dt{font-family:var(--hand);font-size:15px;color:var(--muted)}
+.dt{font-size:14px;color:var(--muted);font-weight:500}
 .ghost{background:none;border:2px solid var(--ink);border-radius:3px;padding:5px 10px;font-size:13px;color:var(--ink)}
 .ghost:hover{background:var(--ink);color:#fff}
 
 .card,.hero{background:var(--card);border:2px solid var(--ink);border-radius:4px;
   padding:16px;margin-bottom:14px;box-shadow:var(--sh)}
 .hero{padding:18px 16px 14px;box-shadow:4px 4px 0 rgba(35,43,49,.16);transition:background .5s}
-.lab{font-family:var(--hand);font-size:16px;color:var(--muted);margin:0 0 12px}
+.lab{font-size:13px;font-weight:600;color:var(--muted);margin:0 0 13px;letter-spacing:.04em;text-transform:uppercase}
 .lab .sub{font-family:var(--sans);font-size:12px}
 
 .face{display:flex;align-items:center;gap:14px}
 .face svg{width:106px;height:106px;flex-shrink:0}
 .numwrap{flex:1;min-width:0}
 .numwrap p{margin:0}
-.cap{font-family:var(--hand);font-size:15px;color:var(--muted);line-height:1.2}
+.cap{font-size:13px;font-weight:500;color:var(--muted);line-height:1.3;letter-spacing:.03em;text-transform:uppercase}
 .num{font-weight:700;font-size:60px;line-height:1;letter-spacing:-.045em;display:flex;
   align-items:baseline;font-variant-numeric:tabular-nums}
 .num small{font-size:23px;font-weight:500;color:var(--muted);margin-left:2px}
-.verdict{font-family:var(--hand);font-size:17px;margin-top:1px!important}
+.verdict{font-size:15px;font-weight:500;margin-top:3px!important;line-height:1.35}
 .dash{border:0;border-top:2px dashed var(--line);margin:14px 0 10px}
-.lad{display:flex;align-items:center;gap:9px;padding:4px 0;font-size:14px}
+.lad{display:flex;align-items:center;gap:10px;padding:5px 0;font-size:14.5px}
 .lad .tick{width:12px;text-align:center;font-size:12px;flex-shrink:0}
 .lad .n{flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.lad .v{font-size:13px;color:var(--muted);font-variant-numeric:tabular-nums}
+.lad .v{font-size:13.5px;font-weight:500;color:var(--muted);font-variant-numeric:tabular-nums}
 .lad.base{color:var(--muted)}
-.hint{font-family:var(--hand);font-size:15px;color:var(--muted);margin:9px 0 0;line-height:1.3}
+.hint{font-size:13.5px;color:var(--muted);margin:10px 0 0;line-height:1.5}
 .meter{height:6px;background:var(--line);border-radius:99px;overflow:hidden;margin-top:9px}
 .meter i{display:block;height:100%;background:var(--amber);transition:width .4s}
 
 input[type=text],input[type=time]{width:100%;background:#fff;border:2px solid var(--line);
   border-radius:3px;padding:11px 12px;font-family:var(--sans);font-size:16px;color:var(--ink)}
 input:focus{border-color:var(--ink);outline:none}
-.fld{font-family:var(--hand);font-size:15px;color:var(--muted);display:block;margin:0 0 4px;padding:0}
+.fld{font-size:13px;font-weight:500;color:var(--muted);display:block;margin:0 0 6px;padding:0}
 .row2{display:flex;gap:10px;margin-top:15px}
 .row2>div{flex:1;min-width:0}
 .stress{border:0;padding:0;margin:15px 0 0}
@@ -98,22 +98,22 @@ input:focus{border-color:var(--ink);outline:none}
 .aclist .meta{font-size:12px;color:var(--muted);font-variant-numeric:tabular-nums}
 .aclist .meta.hot{color:var(--hot)}
 .aclist .meta.cool{color:var(--cool)}
-.aclist .add{font-family:var(--hand);color:var(--muted)}
+.aclist .add{font-size:12.5px;color:var(--muted);font-style:italic}
 
 .chips{display:flex;flex-wrap:wrap;gap:6px;margin:9px 0 0;padding:0;list-style:none}
 .chip{display:inline-flex;align-items:center;gap:6px;background:var(--ink);color:#fff;
-  border-radius:3px;padding:5px 7px 5px 10px;font-size:13.5px}
+  border-radius:3px;padding:6px 8px 6px 11px;font-size:14px}
 .chip button{border:0;background:none;color:rgba(255,255,255,.65);font-size:15px;line-height:1;padding:0 2px}
 .chip button:hover{color:var(--hot)}
 .quick{background:none;border:2px dashed var(--line);color:var(--muted);border-radius:3px;
-  padding:5px 10px;font-size:13.5px}
+  padding:6px 11px;font-size:14px}
 .quick:hover{border-color:var(--ink);color:var(--ink)}
 
 .seg{display:flex;gap:6px;align-items:flex-end}
 .seg button{flex:1;background:none;border:0;padding:4px 0}
 .seg i{display:block;width:100%;background:var(--line);border:2px solid var(--line);border-radius:2px;transition:.18s}
 .seg button[aria-pressed=true] i{background:var(--amber);border-color:var(--ink)}
-.seg small{display:block;font-size:11px;color:var(--muted);margin-top:3px}
+.seg small{display:block;font-size:12px;color:var(--muted);margin-top:4px}
 
 .close{display:flex;gap:10px}
 .big{flex:1;border:2px solid var(--ink);background:#fff;border-radius:3px;padding:14px 0;
@@ -125,38 +125,38 @@ input:focus{border-color:var(--ink);outline:none}
 .linkbtn.wide{display:block;width:100%;margin-top:10px;text-align:center}
 
 .item{display:flex;align-items:center;gap:10px;padding:5px 0}
-.item .nm{width:28%;font-size:14px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.item .nm{width:30%;font-size:14.5px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .track{position:relative;flex:1;height:16px}
 .track::before{content:"";position:absolute;left:50%;top:0;bottom:0;width:2px;background:var(--line)}
 .bar{position:absolute;top:4px;height:9px;transition:width .45s ease}
 .bar.up{left:50%;background:var(--hot)}
 .bar.dn{right:50%;background:var(--cool)}
-.stat{width:66px;text-align:right;font-size:12px;color:var(--muted);flex-shrink:0;font-variant-numeric:tabular-nums}
+.stat{width:72px;text-align:right;font-size:12.5px;font-weight:500;color:var(--muted);flex-shrink:0;font-variant-numeric:tabular-nums}
 .thin{opacity:.42}
-.note{font-family:var(--hand);font-size:15px;color:var(--muted);margin:11px 0 0;line-height:1.35}
-.note.tiny{font-size:14px;margin-top:8px}
-.empty{font-family:var(--hand);font-size:16px;color:var(--muted);text-align:center;padding:14px 6px;line-height:1.4}
+.note{font-size:13.5px;color:var(--muted);margin:12px 0 0;line-height:1.55}
+.note.tiny{font-size:13px;margin-top:9px}
+.empty{font-size:14.5px;color:var(--muted);text-align:center;padding:16px 6px;line-height:1.6}
 
 .strip{display:flex;gap:5px;flex-wrap:wrap}
-.day{width:28px;height:30px;border:2px solid var(--ink);border-radius:2px;color:#fff;
-  font-size:11px;font-weight:500;padding:0}
+.day{width:30px;height:32px;border:2px solid var(--ink);border-radius:2px;color:#fff;
+  font-size:12px;font-weight:600;padding:0}
 .day[aria-current=true]{outline:2px solid var(--amber);outline-offset:2px}
 .fx{display:flex;gap:10px;margin-top:12px}
 .fx>div{flex:1;border:2px dashed var(--line);border-radius:3px;padding:10px}
-.fx .k{font-family:var(--hand);font-size:14px;color:var(--muted);display:block}
+.fx .k{font-size:12.5px;font-weight:500;color:var(--muted);display:block;margin-bottom:2px}
 .fx .v{font-size:17px;font-weight:700;display:block;font-variant-numeric:tabular-nums}
 .v.hot{color:var(--hot)}.v.cool{color:var(--cool)}
 .tools{display:flex;gap:8px;margin-top:13px}
 .tools button{flex:1;background:none;border:2px dashed var(--line);color:var(--muted);
-  border-radius:3px;padding:10px;font-size:13.5px}
+  border-radius:3px;padding:11px;font-size:14px;font-weight:500}
 .tools button:hover{color:var(--ink);border-color:var(--ink)}
-.foot{font-family:var(--hand);font-size:15px;color:var(--muted);text-align:center;margin-top:20px;line-height:1.4}
+.foot{font-size:13.5px;color:var(--muted);text-align:center;margin-top:22px;line-height:1.6}
 
 .toast{position:fixed;left:50%;transform:translateX(-50%);
   bottom:calc(18px + env(safe-area-inset-bottom));z-index:20;background:var(--ink);color:#fff;
   border-radius:3px;padding:11px 14px;font-size:14px;display:flex;align-items:center;gap:12px;
-  box-shadow:var(--sh);max-width:92vw}
-.toast button{background:none;border:0;color:#F0A58F;font-weight:700;font-size:14px;padding:2px}
+  box-shadow:var(--sh);max-width:92vw;line-height:1.5}
+.toast button{background:none;border:0;color:#FFB59F;font-weight:700;font-size:14px;padding:2px}
 @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
 </style>
 </head>
@@ -240,6 +240,7 @@ input:focus{border-color:var(--ink);outline:none}
       <button id="imp">Import</button>
       <button id="clr">Wipe</button>
     </div>
+    <p class="note tiny" id="storage"></p>
   </section>
 
   <p class="foot">Everything stays in this browser.<br>A lead worth testing, not a diagnosis.</p>
@@ -249,18 +250,88 @@ input:focus{border-color:var(--ink);outline:none}
 <script>
 (() => {
 'use strict';
-const KEY='itchlog.v2', MIN_DAYS=5;
-/* one-time cleanup of the old demo namespace */
-try{localStorage.removeItem('itchlog.v1')}catch{}
+const MIN_DAYS=5;
+const IDB_NAME='itchlog', IDB_STORE='state', IDB_KEY='current';
+const LS_KEYS=['itchlog.v2','itchlog.v1'];   /* older homes, read once then kept in sync */
 const $=s=>document.querySelector(s);
 
-const store=(()=>{let ok=true;
-  try{localStorage.setItem('__t','1');localStorage.removeItem('__t')}catch{ok=false}
-  let mem=null;
-  return{ok,
-    read(){try{return ok?JSON.parse(localStorage.getItem(KEY)):mem}catch{return null}},
-    write(v){mem=v;if(!ok)return;
-      try{localStorage.setItem(KEY,JSON.stringify(v))}catch{ok=false;toast('Storage is full — export your data.')}}};
+/* ---------------------------------------------------------------
+   Storage: IndexedDB is the source of truth, localStorage is kept
+   as a mirror, memory is the last resort. Data survives a deploy
+   because nothing here is versioned by release.
+----------------------------------------------------------------*/
+const store=(()=>{
+  let mem=null, idb=null, lsOK=true, mode='memory';
+  try{localStorage.setItem('__t','1');localStorage.removeItem('__t')}catch{lsOK=false}
+
+  const open=()=>new Promise((res,rej)=>{
+    if(!('indexedDB' in window))return rej();
+    const r=indexedDB.open(IDB_NAME,1);
+    r.onupgradeneeded=()=>{const d=r.result;
+      if(!d.objectStoreNames.contains(IDB_STORE))d.createObjectStore(IDB_STORE)};
+    r.onsuccess=()=>res(r.result);
+    r.onerror=()=>rej(r.error);
+  });
+  const tx=(m,fn)=>new Promise((res,rej)=>{
+    if(!idb)return rej();
+    const t=idb.transaction(IDB_STORE,m), rq=fn(t.objectStore(IDB_STORE));
+    rq.onsuccess=()=>res(rq.result); rq.onerror=()=>rej(rq.error);
+  });
+
+  const lsRead=()=>{
+    if(!lsOK)return null;
+    for(const k of LS_KEYS){
+      try{const v=JSON.parse(localStorage.getItem(k));
+        if(v&&Array.isArray(v.days)&&v.days.length)return v}catch{}
+    }
+    return null;
+  };
+
+  /* union by date; a closed day always beats an open one */
+  const merge=(a,b)=>{
+    if(!a)return b; if(!b)return a;
+    const by=new Map();
+    [...a.days,...b.days].forEach(d=>{
+      const cur=by.get(d.date);
+      if(!cur)return by.set(d.date,d);
+      if(cur.itchy===null&&d.itchy!==null)by.set(d.date,d);
+      else if((d.updated||0)>(cur.updated||0))by.set(d.date,d);
+    });
+    return {v:1,days:[...by.values()].sort((x,y)=>x.date<y.date?-1:1),
+            lastExport:Math.max(a.lastExport||0,b.lastExport||0)};
+  };
+
+  let queue=null, timer=null;
+  return{
+    get mode(){return mode},
+    async init(){
+      let fromIdb=null;
+      try{idb=await open(); fromIdb=await tx('readonly',s=>s.get(IDB_KEY)); mode='indexeddb'}
+      catch{ idb=null; mode=lsOK?'localstorage':'memory' }
+      const data=merge(fromIdb,lsRead());        /* migrates old localStorage in one pass */
+      if(data&&idb)await this.write(data);       /* and copies it into IndexedDB */
+      return data;
+    },
+    write(v){
+      mem=v;
+      if(lsOK){try{localStorage.setItem(LS_KEYS[0],JSON.stringify(v))}
+        catch{lsOK=false;toast('Storage is full — export your data.')}}
+      if(!idb)return Promise.resolve();
+      queue=v;                                    /* debounce IndexedDB writes */
+      clearTimeout(timer);
+      return new Promise(res=>{timer=setTimeout(async()=>{
+        try{await tx('readwrite',s=>s.put(queue,IDB_KEY))}catch{}
+        res();
+      },120)});
+    },
+    async persistent(){
+      try{
+        if(!navigator.storage?.persist)return false;
+        if(await navigator.storage.persisted())return true;
+        return await navigator.storage.persist();
+      }catch{return false}
+    }
+  };
 })();
 
 const iso=d=>`${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
@@ -273,9 +344,7 @@ const mean=a=>a.length?a.reduce((x,y)=>x+y,0)/a.length:null;
 const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 
 const blank=date=>({date,foods:[],sleep:'23:30',wake:'07:00',stress:3,itchy:null});
-let db=store.read();
-if(location.search.includes('reset')){db=null;try{localStorage.removeItem(KEY)}catch{}}
-if(!db||!Array.isArray(db.days)) db={v:1,days:[]};
+let db={v:1,days:[]};
 let editing=null, draft=currentDay();
 
 function currentDay(){
@@ -283,7 +352,7 @@ function currentDay(){
   const f=db.days.find(x=>x.date===d);
   return f?{...f,foods:[...f.foods]}:blank(d);
 }
-const persist=()=>store.write(db);
+const persist=()=>{db.updated=Date.now();return store.write(db)};
 const CLOSED=()=>db.days.filter(d=>d.itchy!==null);
 
 function stats(){
@@ -482,7 +551,7 @@ function addFood(name){
 }
 function saveDraft(){
   const i=db.days.findIndex(d=>d.date===draft.date);
-  const rec={...draft,foods:[...draft.foods]};
+  const rec={...draft,foods:[...draft.foods],updated:Date.now()};
   if(i>=0)db.days[i]={...db.days[i],...rec};else db.days.push(rec);
   db.days.sort((a,b)=>a.date<b.date?-1:1);
   persist();
@@ -543,6 +612,7 @@ $('#exp').addEventListener('click',()=>{
   const a=document.createElement('a');a.href=URL.createObjectURL(blob);
   a.download=`itch-log-${todayISO()}.json`;a.click();
   setTimeout(()=>URL.revokeObjectURL(a.href),1000);
+  db.lastExport=Date.now();persist();render();
 });
 $('#imp').addEventListener('click',()=>{
   const i=document.createElement('input');i.type='file';i.accept='application/json,.json';
@@ -557,6 +627,7 @@ $('#imp').addEventListener('click',()=>{
   i.click();
 });
 $('#clr').addEventListener('click',()=>{
+  if(db.days.length&&!confirm(`Delete all ${db.days.length} days? Export first if you're not sure.`))return;
   const backup=JSON.parse(JSON.stringify(db));
   db={v:1,days:[]};editing=null;draft=currentDay();persist();render();
   toast('Everything wiped.','Undo',()=>{db=backup;persist();draft=currentDay();render()});
@@ -575,8 +646,34 @@ if('serviceWorker' in navigator && location.protocol.startsWith('http')){
 
 setInterval(()=>{if(!editing&&draft.date!==todayISO()){draft=currentDay();render()}},60000);
 
-render();
-if(!store.ok)toast('Storage is blocked here — data lasts until you close the tab.');
+async function boot(){
+  const saved=await store.init();
+  if(saved&&Array.isArray(saved.days))db=saved;
+  draft=currentDay();
+  render();
+
+  const persistent=await store.persistent();
+  $('#storage').textContent=
+    store.mode==='indexeddb'?(persistent?'IndexedDB · protected from cleanup':'IndexedDB · browser may clear it if space runs low')
+    :store.mode==='localstorage'?'localStorage only — export regularly'
+    :'memory only — data disappears when you close this tab';
+  if(store.mode==='memory')toast('Storage is blocked here — data lasts until you close the tab.');
+
+  /* reset needs asking for, so a bookmarked ?reset can't quietly wipe you */
+  if(/[?&]reset\b/.test(location.search)){
+    if(confirm('Wipe all local data and start clean?')){
+      db={v:1,days:[]};draft=currentDay();await persist();render();
+    }
+    history.replaceState(null,'',location.pathname);
+  }
+
+  /* nudge for a backup after two weeks of unsaved days */
+  const closed=db.days.filter(d=>d.itchy!==null).length;
+  const since=Date.now()-(db.lastExport||0);
+  if(closed>=7&&since>14*864e5)
+    setTimeout(()=>toast('It’s been a while since you backed up.','Export',()=>$('#exp').click()),2500);
+}
+boot();
 })();
 </script>
 </body>

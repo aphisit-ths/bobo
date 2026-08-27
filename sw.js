@@ -1,5 +1,5 @@
 /* Itch Log — offline shell. Bump VERSION whenever you deploy changes. */
-const VERSION = 'itchlog-v1';
+const VERSION = "itchlog-v2";
 const SHELL = [
   './', './index.html', './manifest.json',
   './icons/icon-192.png', './icons/icon-512.png',
