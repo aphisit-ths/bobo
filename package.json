@@ -11,8 +11,7 @@
     "next": "15.5.0",
     "react": "19.1.0",
     "react-dom": "19.1.0",
-    "web-push": "^3.6.7",
-    "@upstash/qstash": "^2.8.0"
+    "web-push": "^3.6.7"
   },
   "devDependencies": {
     "typescript": "^5.0.0",

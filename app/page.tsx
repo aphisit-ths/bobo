@@ -12,14 +12,11 @@ export default function Home(){
  const send=(delay:number)=>action(async()=>{const sub=await getSubscription();const res=await fetch("/api/push/send",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({subscription:sub.toJSON(),delay})});const data=await res.json();if(!res.ok)throw Error(data.error||"Failed to send push");return delay?"Scheduled for about 1 minute. You can close the app.":"Push request sent. Check your notifications.";});
  const unsubscribe=()=>action(async()=>{const reg=await navigator.serviceWorker.getRegistration("/");const sub=await reg?.pushManager.getSubscription();if(sub)await sub.unsubscribe();return "Push subscription removed.";});
  const btn:React.CSSProperties={display:"block",width:"100%",padding:"16px 18px",border:0,borderRadius:12,fontSize:16,fontWeight:700,cursor:"pointer",marginTop:12};
- return <main style={{maxWidth:480,margin:"0 auto",padding:"54px 22px 70px"}}><div style={{fontSize:48}}>🔔</div><h1 style={{fontSize:38,margin:"12px 0"}}>Push Notification Test</h1><p style={{color:"#a8b8d0",lineHeight:1.7}}>Test real Web Push on an iPhone PWA, including delivery after closing the app.</p>
+ return <main style={{maxWidth:480,margin:"0 auto",padding:"54px 22px 70px"}}><div style={{fontSize:48}}>🔔</div><h1 style={{fontSize:38,margin:"12px 0"}}>Push Notification Test</h1><p style={{color:"#a8b8d0",lineHeight:1.7}}>Test real Web Push on an iPhone PWA, using immediate delivery.</p>
  <section style={{background:"#182338",border:"1px solid #30415e",borderRadius:20,padding:22,marginTop:28}}>
  <div style={{fontSize:13,lineHeight:2,color:"#c5d2e7"}}>PWA installed: <b>{state.installed?"Yes":"No / browser tab"}</b><br/>Push supported: <b>{state.supported?"Yes":"No"}</b><br/>Permission: <b>{state.permission}</b><br/>Subscribed: <b>{state.subscribed?"Yes":"No"}</b></div>
  <button disabled={busy} onClick={enable} style={{...btn,background:"#a5f3fc",color:"#08212d"}}>1 · Enable Notifications</button>
  <button disabled={busy||!state.subscribed} onClick={()=>send(0)} style={{...btn,background:"#86efac",color:"#062514"}}>2 · Send Now</button>
- <button disabled={busy||!state.subscribed} onClick={()=>send(60)} style={{...btn,background:"#c4b5fd",color:"#211443"}}>3 · Send in 1 Minute</button>
- <button disabled={busy||!state.subscribed} onClick={unsubscribe} style={{...btn,background:"#34425a",color:"white"}}>Unsubscribe</button>
- <button disabled={busy} onClick={()=>void refresh()} style={{...btn,background:"transparent",border:"1px solid #566680",color:"#dbeafe"}}>Refresh Status</button>
  <p role="status" aria-live="polite" style={{color:"#a5f3fc",lineHeight:1.6,minHeight:40,marginBottom:0}}>{busy?"Working...":state.message}</p></section>
- <p style={{color:"#a8b8d0",lineHeight:1.8,fontSize:13,marginTop:24}}>iPhone: Safari → Share → Add to Home Screen → open the installed app. Requires iOS 16.4+. “Send in 1 Minute” requires QStash credentials configured on Vercel.</p></main>;
+ <p style={{color:"#a8b8d0",lineHeight:1.8,fontSize:13,marginTop:24}}>iPhone: Safari → Share → Add to Home Screen → open the installed app. Requires iOS 16.4+. No QStash or queue required.</p></main>;
 }
