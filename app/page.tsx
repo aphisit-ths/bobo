@@ -1,8 +1,25 @@
-export default function Home() {
-  return (
-    <main style={{ fontFamily: "system-ui, sans-serif", maxWidth: 640, margin: "100px auto", padding: 24 }}>
-      <h1>Next.js is running ✅</h1>
-      <p>Fresh Next.js project. No legacy code.</p>
-    </main>
-  );
+"use client";
+import {useEffect,useState} from "react";
+type State={permission:string;installed:boolean;supported:boolean;subscribed:boolean;message:string};
+export default function Home(){
+ const [state,setState]=useState<State>({permission:"unknown",installed:false,supported:false,subscribed:false,message:"Checking device..."});
+ const [busy,setBusy]=useState(false);
+ const refresh=async()=>{const supported=typeof window!=="undefined"&&"serviceWorker" in navigator&&"PushManager" in window&&"Notification" in window;const installed=typeof window!=="undefined"&&(window.matchMedia("(display-mode: standalone)").matches||(navigator as Navigator & {standalone?:boolean}).standalone===true);const subscribed=supported?!!(await navigator.serviceWorker.getRegistration("/")?.then(r=>r?.pushManager.getSubscription()).catch(()=>null)):false;setState(s=>({...s,supported,installed,subscribed,permission:supported?Notification.permission:"unavailable",message:s.message==="Checking device..."?"Ready. Enable notifications first.":s.message}));};
+ useEffect(()=>{void refresh();},[]);
+ const getSubscription=async()=>{if(!("serviceWorker" in navigator)||!("PushManager" in window)||!("Notification" in window))throw Error("Web Push is not supported on this device/browser.");if(Notification.permission!=="granted")throw Error("Tap Enable notifications first.");const reg=await navigator.serviceWorker.register("/sw.js");await navigator.serviceWorker.ready;let sub=await reg.pushManager.getSubscription();if(!sub){const res=await fetch("/api/push/config",{cache:"no-store"});const data=await res.json();if(!res.ok)throw Error(data.error||"Push configuration missing");const key=data.publicKey as string;const base64=key.replace(/-/g,"+").replace(/_/g,"/");const bytes=Uint8Array.from(atob(base64+"=".repeat((4-base64.length%4)%4)),c=>c.charCodeAt(0));sub=await reg.pushManager.subscribe({userVisibleOnly:true,applicationServerKey:bytes});}return sub;};
+ const action=async(fn:()=>Promise<string>)=>{setBusy(true);try{const message=await fn();setState(s=>({...s,message}));}catch(e){setState(s=>({...s,message:e instanceof Error?e.message:"Something went wrong"}));}finally{setBusy(false);await refresh();}};
+ const enable=()=>action(async()=>{if(!("Notification" in window))throw Error("Notifications unavailable. Install the PWA on iPhone first.");const permission=await Notification.requestPermission();if(permission!=="granted")throw Error("Permission: "+permission+". Check iPhone notification settings.");await getSubscription();return "Permission granted. Push subscription is active.";});
+ const send=(delay:number)=>action(async()=>{const sub=await getSubscription();const res=await fetch("/api/push/send",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({subscription:sub.toJSON(),delay})});const data=await res.json();if(!res.ok)throw Error(data.error||"Failed to send push");return delay?"Scheduled for about 1 minute. You can close the app.":"Push request sent. Check your notifications.";});
+ const unsubscribe=()=>action(async()=>{const reg=await navigator.serviceWorker.getRegistration("/");const sub=await reg?.pushManager.getSubscription();if(sub)await sub.unsubscribe();return "Push subscription removed.";});
+ const btn:React.CSSProperties={display:"block",width:"100%",padding:"16px 18px",border:0,borderRadius:12,fontSize:16,fontWeight:700,cursor:"pointer",marginTop:12};
+ return <main style={{maxWidth:480,margin:"0 auto",padding:"54px 22px 70px"}}><div style={{fontSize:48}}>🔔</div><h1 style={{fontSize:38,margin:"12px 0"}}>Push Notification Test</h1><p style={{color:"#a8b8d0",lineHeight:1.7}}>Test real Web Push on an iPhone PWA, including delivery after closing the app.</p>
+ <section style={{background:"#182338",border:"1px solid #30415e",borderRadius:20,padding:22,marginTop:28}}>
+ <div style={{fontSize:13,lineHeight:2,color:"#c5d2e7"}}>PWA installed: <b>{state.installed?"Yes":"No / browser tab"}</b><br/>Push supported: <b>{state.supported?"Yes":"No"}</b><br/>Permission: <b>{state.permission}</b><br/>Subscribed: <b>{state.subscribed?"Yes":"No"}</b></div>
+ <button disabled={busy} onClick={enable} style={{...btn,background:"#a5f3fc",color:"#08212d"}}>1 · Enable Notifications</button>
+ <button disabled={busy||!state.subscribed} onClick={()=>send(0)} style={{...btn,background:"#86efac",color:"#062514"}}>2 · Send Now</button>
+ <button disabled={busy||!state.subscribed} onClick={()=>send(60)} style={{...btn,background:"#c4b5fd",color:"#211443"}}>3 · Send in 1 Minute</button>
+ <button disabled={busy||!state.subscribed} onClick={unsubscribe} style={{...btn,background:"#34425a",color:"white"}}>Unsubscribe</button>
+ <button disabled={busy} onClick={()=>void refresh()} style={{...btn,background:"transparent",border:"1px solid #566680",color:"#dbeafe"}}>Refresh Status</button>
+ <p role="status" aria-live="polite" style={{color:"#a5f3fc",lineHeight:1.6,minHeight:40,marginBottom:0}}>{busy?"Working...":state.message}</p></section>
+ <p style={{color:"#a8b8d0",lineHeight:1.8,fontSize:13,marginTop:24}}>iPhone: Safari → Share → Add to Home Screen → open the installed app. Requires iOS 16.4+. “Send in 1 Minute” requires QStash credentials configured on Vercel.</p></main>;
 }

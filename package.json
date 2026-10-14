@@ -1,6 +1,6 @@
 {
   "name": "bobo",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
@@ -8,14 +8,17 @@
     "start": "next start"
   },
   "dependencies": {
-    "next": "15.5.9",
+    "next": "15.5.0",
     "react": "19.1.0",
-    "react-dom": "19.1.0"
+    "react-dom": "19.1.0",
+    "web-push": "^3.6.7",
+    "@upstash/qstash": "^2.8.0"
   },
   "devDependencies": {
     "typescript": "^5.0.0",
     "@types/node": "^22.0.0",
     "@types/react": "^19.0.0",
-    "@types/react-dom": "^19.0.0"
+    "@types/react-dom": "^19.0.0",
+    "@types/web-push": "^3.6.4"
   }
 }
