@@ -5,8 +5,8 @@ export const runtime = 'nodejs';
 export async function POST(request:Request) {
   const currentSigningKey = process.env.QSTASH_CURRENT_SIGNING_KEY;
   const nextSigningKey = process.env.QSTASH_NEXT_SIGNING_KEY;
-  const publicKey = process.env.VAPID_PUBLIC_KEY;
-  const privateKey = process.env.VAPID_PRIVATE_KEY;
+  const publicKey = "BMlJoU0MaWZaEWPqkfm4CFCmZCHKHBGXQc_zjmcRxPjLPsMInKf8KIQdBso8vv7tC-VW1JrJOIxW34uIHBuWnDk";
+  const privateKey = "t9ogFkpxqayCxfAlgo0IdFa8E6b2xejc1Vm1tFIFovQ";
   if (!currentSigningKey || !nextSigningKey || !publicKey || !privateKey)
     return NextResponse.json({error:'Not configured'}, {status:503});
   const signature = request.headers.get('upstash-signature');

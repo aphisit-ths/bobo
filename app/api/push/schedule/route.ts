@@ -3,8 +3,8 @@ import { NextResponse } from 'next/server';
 export const runtime = 'nodejs';
 export async function POST(request:Request) {
   const token = process.env.QSTASH_TOKEN;
-  const publicKey = process.env.VAPID_PUBLIC_KEY;
-  const privateKey = process.env.VAPID_PRIVATE_KEY;
+  const publicKey = "BMlJoU0MaWZaEWPqkfm4CFCmZCHKHBGXQc_zjmcRxPjLPsMInKf8KIQdBso8vv7tC-VW1JrJOIxW34uIHBuWnDk";
+  const privateKey = "t9ogFkpxqayCxfAlgo0IdFa8E6b2xejc1Vm1tFIFovQ";
   if (!token || !publicKey || !privateKey || !process.env.QSTASH_CURRENT_SIGNING_KEY || !process.env.QSTASH_NEXT_SIGNING_KEY)
     return NextResponse.json({error:'Server push settings missing; see README'}, {status:503});
   let subscription: any;
